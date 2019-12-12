@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-app';
+  user
+  ngOnInit() {
+    this.user = localStorage.getItem("username");
+  }
 }

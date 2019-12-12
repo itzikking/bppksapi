@@ -11,6 +11,7 @@ export class WelcomeComponent implements OnInit {
   login_form: FormGroup;
   msg
   username
+  user
   constructor(
     private _formBuilder: FormBuilder,
     public router: Router,
@@ -18,6 +19,7 @@ export class WelcomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.user = localStorage.getItem("username");
     this.login_form = this._formBuilder.group({
       username: ['', Validators.required],
     });
