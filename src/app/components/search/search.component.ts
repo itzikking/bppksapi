@@ -15,6 +15,8 @@ export class SearchComponent implements OnInit {
   displayedColumns: string[] = ['name', ];
   dataSource = new MatTableDataSource(this.books);
   message:string;
+  
+
 
   constructor(    
     private _ApiService: ApiService,
@@ -27,12 +29,7 @@ export class SearchComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();    
-    this._ApiService.GET_ALL(filterValue)
-    .subscribe({
-      next: (res) => {
-        this.books = res.items        
-      }
-    })
+    this._ApiService.GET_ALL(filterValue).subscribe({next: (res) => {this.books = res.items}})
   }
   On_Search(value :any) {
     this._ApiService.GET_ONE(value).subscribe(res => {
@@ -40,4 +37,5 @@ export class SearchComponent implements OnInit {
         this._ApiService.changeMessage(this.wishlists)
     })
   }
+
 }

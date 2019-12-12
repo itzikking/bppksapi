@@ -1,14 +1,10 @@
-<div class="row">
-    <div class="col-sm-4">
-        <h3>My-Wishlist</h3>
+    <div class="col-sm-12">
+            <div class="row">
+        <h3 class="container">My-Wishlist</h3>
         <div *ngIf="this.message !== 'undefined' && this.message.length > 0">
             <div *ngFor="let messag of message">
                 <mat-card class="example-card">
                     <mat-card-header class="container">
-                        <mat-card-actions>
-                            <button mat-raised-button color="warn" (click)="On_Delete(messag.id)"
-                                id="{{messag.id}}">Delete</button>
-                        </mat-card-actions>
                         <mat-card-title>
                             <h3>{{messag.volumeInfo.title}}</h3>
                         </mat-card-title>
@@ -25,6 +21,10 @@
                             <p>{{messag.volumeInfo.authors}}</p>
                         </div>
                     </mat-card-content>
+                    <mat-card-actions>
+                            <button mat-raised-button color="warn" (click)="On_Delete(messag.id)"
+                                id="{{messag.id}}">Delete</button>
+                        </mat-card-actions>
                 </mat-card>
             </div>
         </div>
