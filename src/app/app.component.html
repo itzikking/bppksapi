@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <span>Hello {{user}}</span>
+            
+            <span class="example-spacer"></span>
+            <a  mat-list-item [routerLink]="['/search']">
+                    <span>Search</span>
+                </a>
+                <a mat-list-item [routerLink]="['/wishlist']">
+                        <h6>Wishlist</h6>
+                    </a>
+        </mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>

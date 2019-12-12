@@ -1,0 +1,32 @@
+<div class="row">
+<div class="col-sm-4"></div>
+<mat-card class="example-card" style="margin-top: 250px; margin-bottom: 250px;" class="col-6 col-md-4 col-lg-3">
+        <mat-card-header class="container">
+                <mat-card-title >
+                    <h3>Welcome</h3>
+                </mat-card-title>
+            <mat-card-title>
+                <form (submit)="On_Connect(Connect)" [formGroup]="login_form" class="form-singin">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" formControlName="username" required
+                            [ngClass]="{'is-invalid': login_form.get('username').touched && login_form.get('username').invalid}"
+                            class="form-control" placeholder="Enter username" [(ngModel)]="username">
+                        <div *ngIf="login_form.get('username').touched && login_form.get('username').invalid"
+                            class="invalid-feedback">
+                            <div *ngIf="login_form.get('username').errors.required">Username is required</div>
+                        </div>
+                    </div>
+                <button mat-button type="submit" aria-label="Close" 
+                 mat-flat-button color="primary">SUBMIT</button>
+                 <div *ngIf="msg == 'username is missing'" class="alert alert-danger">{{msg}}</div>
+                <div *ngIf="msg == 'Welcome back'">
+                    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                    <div class="alert alert-primary">{{msg}}</div>
+                </div>
+            </form>
+            </mat-card-title>
+        </mat-card-header>
+</mat-card>
+<div class="col-sm-4"></div>
+</div>
