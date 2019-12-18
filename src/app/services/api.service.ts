@@ -16,8 +16,9 @@ export class ApiService {
   changeMessage(message: string) {
     this.messageSource.next(message)
   }
-  GET_ALL(value) {
+  GET_ALL(value) {    
     return this._http.get<any>(this.GET_API+value+'&maxResults=20')
+    
   }
   GET_ONE(value) {
     return this._http.get<any>(this.GET_1+value)

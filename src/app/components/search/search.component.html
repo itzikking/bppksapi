@@ -1,10 +1,11 @@
-
 <div class="row">
     <div class="col-sm-4"></div>
-    <div class="example-card" class="col-6 col-md-4 col-lg-3">
+    <div class="example-card" class="col-12 col-md-4 col-lg-4">
         <br>
         <h4>Hi {{user}}</h4>
-        <div><h2>Search a book</h2></div>
+        <div>
+            <h2>Search a book</h2>
+        </div>
 
         <div class="input-group mb-5">
             <mat-form-field>
@@ -16,28 +17,58 @@
                         <th mat-header-cell *matHeaderCellDef id="{{book.id}}">
                             <h4>{{book.volumeInfo.title}}</h4>
                             <button type="button" data-toggle="modal" [attr.data-target]="'#wish' + book.id">
-                                <img src="{{book.volumeInfo.imageLinks.smallThumbnail}}" alt="" height="120" width="100">
+                                <img src="{{book.volumeInfo.imageLinks.smallThumbnail}}" alt="" height="120"
+                                    width="100">
                             </button>
                             <div class="modal fade" id="wish{{book.id}}" role="dialog">
                                 <div class="modal-dialog">
-                                  <!-- Modal content-->
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h5>{{book.volumeInfo.title}}</h5>
+                                            <h4>author:{{book.volumeInfo.authors}}</h4>
+                                            <img src="{{book.volumeInfo.imageLinks.smallThumbnail}}" alt="" height="120"
+                                                width="100">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" mat-flat-button color="primary"
+                                                (click)="On_Search(book.id)" data-dismiss="modal" data-toggle="modal"
+                                                data-target="#myModal" id="{{book.id}}">add to Wishlist
+                                            </button>
+                                            <button type="button" class="btn btn-default"
+                                                data-dismiss="modal">Close</button>
+                                        </div>
                                     </div>
-                                    <div class="modal-body">
-                                      <h5>{{book.volumeInfo.title}}</h5>
-                                      <h4>author:{{book.volumeInfo.authors}}</h4>
-                                      <img src="{{book.volumeInfo.imageLinks.smallThumbnail}}" alt="" height="120" width="100">
-
+                                </div>
+                            </div>
+                            <div id="myModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ng-container *ngIf="msg == 'success';">
+                                                <h5 style="margin-left: 30%; color: greenyellow;">Added successfully
+                                                </h5>
+                                            </ng-container>
+                                            <div *ngIf="msg == 'fail';">
+                                                <h5 style="margin-left: 30%; color: rgb(255, 47, 47);">The book is
+                                                    already on the wish list</h5>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" mat-flat-button color="primary"
+                                                [routerLink]="['/wishlist']" data-dismiss="modal">
+                                                <h6>Wishlist</h6>
+                                            </button>
+                                            <button type="button" class="btn btn-default"
+                                                data-dismiss="modal">Close</button>
+                                        </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" mat-flat-button color="primary" (click)="On_Search(book.id)"
-                                            id="{{book.id}}">add to Wishlist
-                                        </button>
-                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    </div>
-                                  </div>
                                 </div>
                             </div>
                         </th>

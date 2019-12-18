@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ApiService} from '../../services/api.service'
-import {MatTableDataSource} from '@angular/material/table';
+import { ApiService } from '../../services/api.service'
+import { MatTableDataSource } from '@angular/material/table';
 
 
 @Component({
@@ -10,17 +10,17 @@ import {MatTableDataSource} from '@angular/material/table';
 })
 export class SearchComponent implements OnInit {
   user
-  books = []
-  wishlists:any = []
-  displayedColumns: string[] = ['name', ];
+  books: any = []
+  wishlists: any = []
+  displayedColumns: string[] = ['name',];
   dataSource = new MatTableDataSource(this.books);
-  message:string;
-  
+  message: string;
+  msg
 
 
-  constructor(    
+  constructor(
     private _ApiService: ApiService,
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.user = localStorage.getItem("username");
@@ -28,14 +28,21 @@ export class SearchComponent implements OnInit {
   }
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();    
-    this._ApiService.GET_ALL(filterValue).subscribe({next: (res) => {this.books = res.items}})
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this._ApiService.GET_ALL(filterValue).subscribe({ next: (res) => { this.books = res.items } })
   }
-  On_Search(value :any) {
-    this._ApiService.GET_ONE(value).subscribe(res => {
+  On_Search(value: any) {
+    const result = this.wishlists.find(({ id }) => id === value);
+    if (result !== undefined) {
+      this.msg = 'fail'
+    }
+    else {
+      this._ApiService.GET_ONE(value).subscribe(res => {
         this.wishlists.push(res)
         this._ApiService.changeMessage(this.wishlists)
-    })
+      })
+      this.msg = 'success'
+    }
   }
 
 }

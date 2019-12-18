@@ -1,7 +1,8 @@
-    <div class="col-sm-12">
-            <div class="row">
-        <h3 class="container">My-Wishlist</h3>
-        <div *ngIf="this.message !== 'undefined' && this.message.length > 0">
+    <div class="col-12 col-sm-12">
+            <div class="row" class="container">
+            <h1 *ngIf="msg == 'fail'">My-Wishlist is empty!</h1>
+            <div *ngIf="this.message !== 'undefined' && this.message.length > 0">
+                <h1>My-Wishlist</h1>
             <div *ngFor="let messag of message">
                 <mat-card class="example-card">
                     <mat-card-header class="container">
@@ -27,6 +28,6 @@
                         </mat-card-actions>
                 </mat-card>
             </div>
-        </div>
+        </div> 
     </div>
 </div>
